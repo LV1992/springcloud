@@ -1,0 +1,13 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+#  false这个的默认值为true，设置为true不会对使用不会有很大的影响，但是在启动的时候会保下面的错误：
+#    was unable to refresh its cache! status = Cannot execute request on any known server
+#    是因为启动的时候自己注册了自己而引起的冲突
+    service-url:
+#    defaultZone配置eureka的地址，这个如果有多个注册中心，则用逗号隔开。
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
